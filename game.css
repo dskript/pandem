@@ -1,0 +1,56 @@
+
+/*card shape and position */
+.cardBack
+{border-style: double;
+ border-radius: 5px;
+ height: 7em;
+ width: 5em;
+ position: relative;
+ float:left;
+}
+.deck
+{border-style: solid;
+ border-radius: 1px;
+ height: 7em;
+ width: 5em;
+ color: red;
+ position: relative;
+ top: -100%;
+ z-index: -10;
+
+}
+
+
+.cardFront
+{border-style: double;
+ border-radius: 5px;
+ height: 7em;
+ width: 5em;
+ position: relative;
+ margin-left: 50%;
+}
+.cardSpace{
+margin: 10px;
+height: 7em;
+width: 11em;
+}
+
+/*text position in the card*/
+.cardBack p {
+ margin: 0;
+ position: absolute;              
+ top: 50%;     
+ left: 50%;
+ margin-right: -50%;                    
+ transform: translate(-50%, -50%);
+}
+
+.cardFront p {
+ margin: 0;
+ position: absolute;              
+ top: 50%;     
+ left: 50%;
+ margin-right: -50%;                    
+ transform: translate(-50%, -50%);
+}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> JD GAME </title>
+	<link rel="stylesheet" type="text/css" href="game.css">
+	
+
+</head>
+
+<p id = "card1">test</p>
+
+<body>
+	
+	<button type="button" onclick = "showDeck(infectionDeck)" >Inf Deck </button>
+	<button type="button" onclick = "showDeck(usedInfDeck)" >Used Inf Deck </button>
+	<button type="button" onclick = "drawCard(infectionDeck, usedInfDeck)" >Draw Card </button>
+	<button type="button" onclick = "showShuffleDeck(infectionDeck)">Shuffle</button>
+	<p id="myPara"> </p>
+	<button type="button" onclick = "showGS(gameSt)" >Game State </button>
+	<p id="myPara2"> </p>
+
+<!-- game code starts here -->
+	<div class = "cardSpace">
+		<div class = "cardBack"><p >Deck</p></div>
+		<div class = "cardFront"><p id = "card">test</p></div>
+		</div>
+
+
+
+
+<script type="text/javascript" src="nodejs/test.js">
+	</script>
+	<script type="text/javascript" src="nodejs/gameState.js">
+	</script>
+	<script type="text/javascript" src="nodejs/genDivs.js">
+	</script>
+
+</body>
+
+</html>
