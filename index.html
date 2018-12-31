@@ -7,23 +7,34 @@
 
 </head>
 
-<p id = "card1">test</p>
 
 <body>
 	
 	<button type="button" onclick = "showDeck(infectionDeck)" >Inf Deck </button>
 	<button type="button" onclick = "showDeck(usedInfDeck)" >Used Inf Deck </button>
-	<button type="button" onclick = "drawCard(infectionDeck, usedInfDeck)" >Draw Card </button>
+	<!-- <button type="button" onclick = "drawCard(infectionDeck, usedInfDeck)" >Draw Card </button> -->
 	<button type="button" onclick = "showShuffleDeck(infectionDeck)">Shuffle</button>
 	<p id="myPara"> </p>
-	<button type="button" onclick = "showGS(gameSt)" >Game State </button>
+	<button type="button" onclick = "showGS(state)" >Game State </button>
 	<p id="myPara2"> </p>
 
 <!-- game code starts here -->
-	<div class = "cardSpace">
-		<div class = "cardBack"><p >Deck</p></div>
+<!-- <p > Draw Card </p> -->
+	<section class = "cardSpace">
+		<button class="button" onclick = "drawCard(infectionDeck, usedInfDeck)">Draw Card</button>
 		<div class = "cardFront"><p id = "card">test</p></div>
-		</div>
+
+	</section>
+	
+	<div >
+		<img src="Planet_Earth_D.jpg" class="center-fit" alt="Planets" usemap="#planetmap">
+
+		<!-- <map name="planetmap">
+
+		<area shape="circle" coords="90,58,3" alt="Mercury">
+		<area shape="circle" coords="124,58,8" alt="Venus">
+		</map> -->
+	</div>
 
 
 

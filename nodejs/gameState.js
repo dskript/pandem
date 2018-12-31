@@ -1,12 +1,11 @@
-let gameSt = {
-	drawnInfCard: "none",
-	numPlayer: "0",
+let state = {
+	numOfCards: infectionDeck.length
 }
 
 
 function showGS(){
 	let x = document.getElementById("myPara2")
-			x.innerHTML = gameSt.drawnInfCard
+			x.innerHTML = state.numOfCards
 }
 
 

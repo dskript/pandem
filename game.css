@@ -1,25 +1,70 @@
 
+/* map */
+/* .imgBox {
+    margin: 0;
+    padding: 0;
+} */
+.imgBox {
+    display: grid;
+    /* height: 100%; */
+    float: left;
+
+    position: relative;
+    background-color: blue;
+}
+.center-fit {
+    max-width: 80%;
+    float: right;
+
+    /* max-height: 100vh; */
+    /* margin: auto; */
+}
+
+
 /*card shape and position */
-.cardBack
+/* ––––––––––––––––––––––––-–––––––––––––––––––––––– */
+
+.cardSpace{
+    /* background-color: aqua; */
+    /* margin: 10px; */
+    height: 8em;
+    width: 12em; 
+    float: left;
+    /* padding-bottom: 1em; */
+    position: relative;
+    z-index: -50;
+    }
+
+.button
+{
+/* {border-style: double; */
+ /* border-radius: 5px; */
+ /* border-color: crimson; */
+ font-size: 16px;
+ height: 8em;
+ width: 5em;
+ position: relative;
+ background-color: transparent;
+ float:left;
+ border: none;
+ outline:0;
+ /* z-index:-10; */
+}
+
+.deck
 {border-style: double;
  border-radius: 5px;
+ /* border-color: crimson; */
+ background-color: gray; 
  height: 7em;
  width: 5em;
- position: relative;
- float:left;
+ position: absolute;
+ float: left;
+ padding: auto;
+ /* z-index: -10; */
+ /* top: 0px;  */
+ /* left: 0px; */
 }
-.deck
-{border-style: solid;
- border-radius: 1px;
- height: 7em;
- width: 5em;
- color: red;
- position: relative;
- top: -100%;
- z-index: -10;
-
-}
-
 
 .cardFront
 {border-style: double;
@@ -28,12 +73,9 @@
  width: 5em;
  position: relative;
  margin-left: 50%;
+
 }
-.cardSpace{
-margin: 10px;
-height: 7em;
-width: 11em;
-}
+
 
 /*text position in the card*/
 .cardBack p {

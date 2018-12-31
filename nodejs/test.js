@@ -1,5 +1,5 @@
 
-let infectionDeck = ['Bangkok','San Francisco', 'Hong Kong', 'Paris'];
+let infectionDeck = ['Bangkok','San Francisco', 'Hong Kong', 'Paris', 'New York'];
 let usedInfDeck = []
 
 // console.log(cars)
@@ -31,10 +31,20 @@ function showShuffleDeck(deck){
 
 
 function drawCard(drawDeck, usedDeck){
-	// for(let i = 0; i < num; i++ ){
-		usedDeck.unshift(drawDeck.shift())
-		let x = document.getElementById("card")
-		x.innerHTML = usedDeck[0]
+	console.log(state.numOfCards-1)
+
+	usedDeck.unshift(drawDeck.shift())
+	let x = document.getElementById("card")
+	x.innerHTML = usedDeck[0]
+	//updates numbers of cards in Game state
+	state.numOfCards = infectionDeck.length
+	//
+	var parent = document.getElementsByClassName("cardSpace")
+	// / console.log(child)
+	var child = document.getElementById("r");
+	// console.log(child)
+	console.log(parent[0].removeChild(child))
+
 
 }
 
