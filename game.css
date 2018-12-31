@@ -1,25 +1,19 @@
 
 /* map */
-/* .imgBox {
-    margin: 0;
-    padding: 0;
-} */
-.imgBox {
-    display: grid;
-    /* height: 100%; */
-    float: left;
 
-    position: relative;
-    background-color: blue;
-}
-.center-fit {
+
+
+.planetMap {
     max-width: 80%;
-    float: right;
-
-    /* max-height: 100vh; */
-    /* margin: auto; */
+    clear: both;
+    position: relative;
+    margin: 2em;
 }
 
+/* .map{
+    border: 1px #f00 solid;
+
+} */
 
 /*card shape and position */
 /* ––––––––––––––––––––––––-–––––––––––––––––––––––– */
@@ -32,7 +26,7 @@
     float: left;
     /* padding-bottom: 1em; */
     position: relative;
-    z-index: -50;
+
     }
 
 .button
@@ -48,7 +42,7 @@
  float:left;
  border: none;
  outline:0;
- /* z-index:-10; */
+ z-index:10;
 }
 
 .deck
@@ -69,6 +63,7 @@
 .cardFront
 {border-style: double;
  border-radius: 5px;
+ margin-top: 8px;
  height: 7em;
  width: 5em;
  position: relative;
