@@ -91,12 +91,45 @@ function drawMap(ctx, image){
     drawMap(ctx, image);
 
 
+
+	//draw city location on the image map
+let cityCord = [[654,336,'Bankok'],[45, 249, 'SF'],[381,209, 'Paris'], [695, 305,'Hong Kong'], [180,243,'NY']]
+
 function drawCity(){
- 
-    ctx.fillStyle = 'black' 
-    ctx.fillRect(10, 10, 100, 100) 
-    ctx.fillStyle = 'green'
-    ctx.fillRect(10, 10, 50, 50)
+	cityCord.forEach(function(city){
+		for (let i in city){
+		ctx.fillStyle = 'red' 
+		ctx.beginPath();
+		ctx.arc(city[0], city[1], 5, 0, Math.PI * 2);
+		ctx.fill();
+			}
+		}
+	)
 }
 
 
+//mouse position
+
+function writeMessage(canvas, message) {
+	// var context = canvas.getContext('2d');
+	// // ctx.clearRect(0, 0, canvas.width, canvas.height);
+	// ctx.font = '18pt Calibri';
+	// ctx.fillStyle = 'black';
+	// ctx.fillText(message, 10, 25);
+	console.log(message)
+  }
+  function getMousePos(canvas, evt) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+	  x: evt.clientX - rect.left,
+	  y: evt.clientY - rect.top
+	};
+  }
+//   var canvas = document.getElementById('canvas');
+//   var ctx = canvas.getctx('2d');
+
+  canvas.addEventListener('mousemove', function(evt) {
+	var mousePos = getMousePos(canvas, evt);
+	var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+	writeMessage(canvas, message);
+  }, false);
