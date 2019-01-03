@@ -1,5 +1,12 @@
 let state = {
 	numOfCards: infectionDeck.length,
+	city:{
+		'Bangkok':[],
+		'San Francisco':[], 
+		'Hong Kong':[], 
+		'Paris':[], 
+		'New York':[]
+	},
 
 }
 
