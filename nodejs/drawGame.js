@@ -95,39 +95,52 @@ function drawMap(ctx, image){
 let cityCord = [[654,336,'Bangkok','red'],[45, 249, 'San Francisco', 'cyan'],
 [381,209, 'Paris', 'cyan'], [695, 305,'Hong Kong','red'], [180,243,'New York','cyan']]
 
-//connection hubs, first city in each nested array connect to all other cities in that array
-let connect = [['Paris', 'Bangkok', 'Hong Kong']]
+//connection hubs
+//would need to account for canvas wrapping SF <> Tokyo
+// let connect = [
+// 	['Santiago','Lima'],['Lima','Bogota'],['Lima','Mexico City'],
+// 	['Bogota','Buenos Aires'],['Bogota','Sao Paulo'],['Bogota','Miami'],
+// 	['Mexico City','Miami'],['Mexico City','Los Angeles'],
+// 	['Los Angeles','Sydney'],['Los Angeles','San Francisco'],
+// 	['San Francisco','Chicago'],['San Francisco','Manila'],['San Francisco','Tokyo'],
+// 	['Miami','Atlanta'],['Miami','Washington'],
+// 	['Washington','Atlanta'],['Washington','Montreal'],['Washington','New York'],
+// 	['Atlanta','Chicago'],['Chicago','Montreal'],['Montreal','New York'],
+// ]
+
+//test
+let connect = [['New York','Paris'], ["Hong Kong", 'Bangkok']]
+
 
 function drawConnection(){
 let flatCC = cityCord.flat()
 let cityIdx,y1,x1, y2,x2
 connect.forEach(function(connectCity){
 	cityIdx = flatCC.indexOf(connectCity[0])
+	cityIdx2 = flatCC.indexOf(connectCity[1])
 	x1 = flatCC[cityIdx-1]
 	y1 = flatCC[cityIdx-2]
-	console.log(x1, y1)
-	for(let i = 1; i < connectCity.length; i ++){
-		cityIdx = flatCC.indexOf(connectCity[i])
-		x2 = flatCC[cityIdx-1]
-		y2 = flatCC[cityIdx-2]
-		ctx.beginPath();
-		ctx.lineWidth = "5";
+	x2 = flatCC[cityIdx2-1]
+	y2 = flatCC[cityIdx2-2]
+	ctx.beginPath();
+		ctx.lineWidth = "2";
 		ctx.moveTo(y1, x1);
 		ctx.lineTo(y2, x2);
-		ctx.stroke();
-	}		
+		ctx.stroke();		
 	})
 }
 
 
 function drawCity(){
 	cityCord.forEach(function(city){
-		ctx.save();
+		ctx.fillStyle = "black"
+		ctx.font = "15px Arial Bold";
+		ctx.fillText(city[2], city[0]-10, city[1]-10);
 		ctx.fillStyle = city[3] 
 		ctx.beginPath();
 		ctx.arc(city[0], city[1], 8, 0, Math.PI * 2);
 		ctx.fill();
-		ctx.restore();	
+		
 		}
 	)
 }
@@ -139,10 +152,10 @@ function infect(newINFcity){
 	let setY = 0
 	let diseaseCount = isOutbreak(newINFcity)
 	if (diseaseCount === 1){
-		setX = - 5 , setY = 10	
+		setX = - 16 , setY = 9	
 	}
 	if (diseaseCount === 2){
-		setX = - 5 , setY = -10	
+		setX = - 16 , setY = -9	
 	}
 	cityCord.forEach(function(city){
 
@@ -158,8 +171,10 @@ function infect(newINFcity){
 				ctx.arc(y, x +12, 5, 0, Math.PI * 2);
 				ctx.fill()
 				ctx.stroke();
-				//updates GS with infected city and disease color
+				//updates state with infected city name and disease color
 				state.city[cityName].push(diseaseColor)
+				//updates total color per disease color
+				state[diseaseColor]++
 				//checks for outbreak
 				isOutbreak(cityName)
 				return 
@@ -170,12 +185,19 @@ function infect(newINFcity){
 //returns city disease count from Game state
 function isOutbreak(cityName){
 	let diseaseCount = state.city[cityName].length
+	let colorCount = Object.values(state.city).flat()
+
+	console.log(state.red)
 	// console.log(state.city[cityName])
 	return diseaseCount
 }
 
+function countINF(){
+	console.log(Object.values(state))
+}
 
 
+// countINF()
 
 
 

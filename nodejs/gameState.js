@@ -7,6 +7,8 @@ let state = {
 		'Paris':[], 
 		'New York':[]
 	},
+	red: 0,
+	cyan: 0,
 
 }
 
