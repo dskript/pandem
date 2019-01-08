@@ -15,8 +15,6 @@ let state = {
 }
 
 
-
-
 function showGS(){
 	let x = document.getElementById("myPara2")
 			x.innerHTML = state.numOfCards
@@ -124,16 +122,6 @@ let cities = {
 		INFstate: { red: 0, cyan: 0, black: 0, yellow: 0},
 		connections: ['chicago','atlanta','ny']
 	  },
-	//   let connect = [
-	// 	['Santiago','Lima'],['Lima','Bogota'],['Lima','Mexico City'],
-	// 	['Bogota','Buenos Aires'],['Bogota','Sao Paulo'],['Bogota','Miami'],
-	// 	['Mexico City','Miami'],['Mexico City','Los Angeles'],
-	// 	['Los Angeles','Sydney'],['Los Angeles','San Francisco'],
-	// 	['San Francisco','Chicago'],['San Francisco','Manila'],['San Francisco','Tokyo'],
-	// 	['Miami','Atlanta'],['Miami','Washington'],
-	// 	['Washington','Atlanta'],['Washington','Montreal'],['Washington','New York'],
-	// 	['Atlanta','Chicago'],['Chicago','Montreal'],['Montreal','New York'],
-	// ]
 	bangkok: {
 		name: 'Bangkok',
 		position: new position(1024,422),
@@ -167,4 +155,47 @@ let cities = {
 
 //   console.log(cities.newyork.position.x)
 
-  
+let players = {
+	player1: {
+		role: 'no role',
+		position: cities.atlanta.position,
+		hand: {city:[],event:[]},
+		state: 'out of turn',
+		actionCount: 4,
+		// action: drive() fly(),
+		
+	}
+}
+
+// let playerRoles = ['Medic', 'Scientist', 'Researcher', 'Quarantine Specialist', 'Operations Expert','Dispacther','Contingency Planner']
+let roles = {
+	medic:{
+		name:'Medic',
+		image: './pawn/medic.png',
+		},
+	scientist:{
+		name: 'Scientist',
+		image: './pawn/scientist.png',
+	},
+	research:{
+		name:'Researcher',
+		image: './pawn/research.png',
+	},
+	qspec:{
+		name:'Quarantine Specialist',
+		image: './pawn/qspec.png',
+	},
+	opsx:{
+		name:'Operations Expert',
+		image: './pawn/opsx.png',
+	},
+	dispatch:{
+		name:'Dispacther',
+		image: './pawn/dispatch.png',
+	},
+	planner:{
+		name:'Contingency Planner',
+		image: './pawn/planner.png',
+	}
+	 }
+// console.log(playerRoles.length, Object.keys(playerRoles1).length)

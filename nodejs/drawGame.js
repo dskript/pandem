@@ -4,6 +4,8 @@ let infectionDeck = ['ny', 'bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'li
 ];
 let usedInfDeck = []
 
+// let playerRoles = ['Medic', 'Scientist', 'Researcher', 'Quarantine Specialist', 'Operations Expert','Dispacther','Contingency Planner']
+
 //creates visiable depth to the card deck
 for(var i=0; i < 5; i++){
 	var newDiv = document.createElement('div');
@@ -19,8 +21,9 @@ let x = document.getElementsByTagName("div")
 
 
 /**
- * Shuffles array in place. ES6 version
+ * Shuffles deck
  */
+
 function shuffle(a) {
 
     for (let i = a.length - 1; i > 0; i--) {
@@ -30,21 +33,21 @@ function shuffle(a) {
 }
 
 //prints unshuffled/shuffled deck
-function showDeck(deck){
-			let x = document.getElementById("myPara")
-			x.innerHTML = deck.join(", ")
-		}
-function showShuffleDeck(deck){
-	shuffle(deck)
-	let x = document.getElementById("myPara")
-			x.innerHTML = deck.join(", ")
-}
+// function showDeck(){
+// 			let x = document.getElementById("myPara")
+// 			x.innerHTML = infectionDeck.join(", ")
+// 		}
+// function showShuffleDeck(){
+// 	shuffle(infectionDeck)
+// 	let x = document.getElementById("myPara")
+// 			x.innerHTML = infectionDeck.join(", ")
+// }
 
 //picks up a card from infection deck
 function drawINFcard(drawDeck, usedDeck){
 	usedDeck.unshift(drawDeck.shift())
 	let x = document.getElementById("card")
-	x.innerHTML = usedDeck[0]
+	x.innerHTML = cities[usedDeck[0]].name
 	//updates numbers of cards in Game state
 	state.numOfCards = infectionDeck.length
 	var parent = document.getElementsByClassName("cardSpace")
@@ -181,7 +184,15 @@ function countINF(){
 
 // countINF()
 
+function drawPlayer(imageSource, position){
+    var image = new Image();
+	// Set the image source and start loading
+	let x = position.x - 10
+	let y = position.y - 20
+	image.src = imageSource;
+	ctx.drawImage(image, x, y, 20, 30);
 
+}
 
 
 //mouse position, helper function to get x&y coords

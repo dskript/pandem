@@ -13,7 +13,7 @@
 	<button type="button" onclick = "showDeck(infectionDeck)" >Inf Deck </button>
 	<button type="button" onclick = "showDeck(usedInfDeck)" >Used Inf Deck </button>
 	<!-- <button type="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)" >Draw Card </button> -->
-	<button type="button" onclick = "showShuffleDeck(infectionDeck)">Shuffle</button>
+	<button type="button" onclick = "newGame()">Start Game</button>
 	<p id="myPara"> </p>
 	<button type="button" onclick = "showGS(state)" >Game State </button>
 	<p id="myPara2"> </p>
@@ -21,8 +21,8 @@
 <!-- game code starts here -->
 <!-- <p > Draw Card </p> -->
 	<section class = "cardSpace">
-		<button class="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)">Draw Card</button>
-		<div class = "cardFront"><p id = "card">test</p></div>
+		<button class="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)">Draw Card INFdeck</button>
+		<div class = "cardFront"><p id = "card"></p></div>
 <canvas id="canvas" class="canvas">
 </canvas>
 
@@ -33,6 +33,8 @@
 <script type="text/javascript" src="nodejs/drawGame.js">
 </script>
 <script type="text/javascript" src="nodejs/gameState.js">
+</script>
+<script type="text/javascript" src="nodejs/newGame.js">
 </script>
 
 
