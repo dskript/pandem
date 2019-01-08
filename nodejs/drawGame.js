@@ -1,5 +1,7 @@
 
-let infectionDeck = ['newyork', 'bangkok', 'sanfran', 'hongkong', 'paris'];
+let infectionDeck = ['ny', 'bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'lima', 'bogota', 'saopaulo',
+'buenosaires', 'mexicocity', 'miami', 'la','atlanta','chicago','wdc','montreal'
+];
 let usedInfDeck = []
 
 //creates visiable depth to the card deck
@@ -85,7 +87,7 @@ function drawMap(ctx, image){
     }
 	ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 	//put city and connecting lines on the map after map image is louaded
-	// drawConnection()
+	drawConnection()
 	drawCity()
 	
 }
@@ -97,68 +99,13 @@ function drawMap(ctx, image){
     drawMap(ctx, image);
 
 
-
 //draw city location as color dot on the map. color corresponds to deseases that are native to each city
-// let cityCord = [[654,336,'Bangkok','red'],[45, 249, 'San Francisco', 'cyan'],
-// [381,209, 'Paris', 'cyan'], [695, 305,'Hong Kong','red'], [180,243,'New York','cyan']]
-
-//connection hubs
-//would need to account for canvas wrapping SF <> Tokyo
-let connect = [
-	['Santiago','Lima'],['Lima','Bogota'],['Lima','Mexico City'],
-	['Bogota','Buenos Aires'],['Bogota','Sao Paulo'],['Bogota','Miami'],
-	['Mexico City','Miami'],['Mexico City','Los Angeles'],
-	['Los Angeles','Sydney'],['Los Angeles','San Francisco'],
-	['San Francisco','Chicago'],['San Francisco','Manila'],['San Francisco','Tokyo'],
-	['Miami','Atlanta'],['Miami','Washington'],
-	['Washington','Atlanta'],['Washington','Montreal'],['Washington','New York'],
-	['Atlanta','Chicago'],['Chicago','Montreal'],['Montreal','New York'],
-]
-
-//test
-// let connect = [['New York','Paris'], ["Hong Kong", 'Bangkok']]
-
-
-// function drawConnection(){
-// let flatCC = cityCord.flat()
-// let cityIdx,y1,x1, y2,x2
-// connect.forEach(function(connectCity){
-// 	cityIdx = flatCC.indexOf(connectCity[0])
-// 	cityIdx2 = flatCC.indexOf(connectCity[1])
-// 	x1 = flatCC[cityIdx-1]
-// 	y1 = flatCC[cityIdx-2]
-// 	x2 = flatCC[cityIdx2-1]
-// 	y2 = flatCC[cityIdx2-2]
-// 	ctx.beginPath();
-// 		ctx.lineWidth = "2";
-// 		ctx.moveTo(y1, x1);
-// 		ctx.lineTo(y2, x2);
-// 		ctx.stroke();		
-// 	})
-// }
-
-
-// function drawCity(){
-// 	cityCord.forEach(function(city){
-// 		ctx.fillStyle = "black"
-// 		ctx.font = "15px Arial Bold";
-// 		ctx.fillText(city[2], city[0]-10, city[1]-10);
-// 		ctx.fillStyle = city[3] 
-// 		ctx.beginPath();
-// 		ctx.arc(city[0], city[1], 8, 0, Math.PI * 2);
-// 		ctx.fill();
-		
-// 		}
-// 	)
-// }
-
-
-//new based on alex
 function drawCity(){
 	for (let k in cities){
 		let city = cities[k]
-		ctx.fillStyle = "black"
-		ctx.font = "15px Arial Bold";
+		ctx.fillStyle = 'black'
+		// ctx.fillStroke = "black"
+		ctx.font = "16px Arial";
 		ctx.fillText(city.name, city.position.x-10, city.position.y-10);
 		ctx.fillStyle = city.color 
 		ctx.beginPath();
@@ -166,44 +113,26 @@ function drawCity(){
 		ctx.fill();	
 	}
 }
-//infects city by with native disease. 
 
-// function infect(newINFcity){
-// 	let setX = 0 
-// 	let setY = 0
-// 	let diseaseCount = isOutbreak(newINFcity)
-// 	if (diseaseCount === 1){
-// 		setX = - 16 , setY = 9	
-// 	}
-// 	if (diseaseCount === 2){
-// 		setX = - 16 , setY = -9	
-// 	}
-// 	cityCord.forEach(function(city){
-
-// 		let cityName = city[2]
-// 		let diseaseColor = city[3]
-// 		let x = setX + city[1]
-// 		let y = setY + city[0]
+//draw direct connection lines between cities
+function drawConnection(){
+	for (let startCity in cities){
+		xStart = cities[startCity].position.x
+		yStart = cities[startCity].position.y
+		for(let endCity of cities[startCity].connections){
+			xEnd = cities[endCity].position.x
+			yEnd = cities[endCity].position.y	
+				ctx.beginPath();
+				ctx.lineWidth = "1";
+				ctx.strokeStyle = 'white'
+				ctx.moveTo(xStart, yStart);
+				ctx.lineTo(xEnd, yEnd);
+				ctx.stroke();
+			}			
+		}
+	}
 	
-// 			if(newINFcity === cityName){	
-// 				ctx.fillStyle = diseaseColor
-// 				ctx.strokeStyle = 'white'
-// 				ctx.beginPath();
-// 				ctx.arc(y, x +12, 5, 0, Math.PI * 2);
-// 				ctx.fill()
-// 				ctx.stroke();
-// 				//updates state with infected city name and disease color
-// 				state.city[cityName].push(diseaseColor)
-// 				//updates total color per disease color
-// 				state[diseaseColor]++
-// 				//checks for outbreak
-// 				isOutbreak(cityName)
-// 				return 
-// 			}	
-// 		})
-// }
-
-//new alex
+//infects city by with native disease. 
 function infect(INFcity){
 	let setX = 0 
 	let setY = 0
