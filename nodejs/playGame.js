@@ -6,7 +6,7 @@ function drawINFcard(drawDeck, usedDeck){
 	//updates numbers of cards in Game state
 	state.numOfCards = infectionDeck.length
 	var parent = document.getElementsByClassName("cardSpace")
-	var child = document.getElementById("r");
+	var child = document.getElementById("inf");
 	// game ends when Infection deck has 2 cards left
 	if(infectionDeck.length <= 2){
 		parent[0].removeChild(child)

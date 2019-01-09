@@ -20,7 +20,7 @@
     /* height: 660px;
     width: 1100px; */
     clear: both;
-    /* float: left; */
+    float: left;
     /* max-width: 90%; */
     border: 1px solid;
     /* background-color: red; */
@@ -34,53 +34,76 @@
 .cardSpace{
     /* background-color: aqua; */
     /* margin: 10px; */
+    display: flex;
     height: 8em;
-    width: 12em; 
-    float: left;
+    width: 24em; 
+    /* float: left; */
     /* padding-bottom: 1em; */
     position: relative;
+    
 
     }
-
+.INFdeck{
+ display: flex;
+ flex-grow: 1;
+ position: relative;
+ /* background-color: rgb(100, 240, 100); */
+}
+.PLAYdeck{
+    display: flex;
+    flex-grow: 1;
+    /* background-color: green; */
+    /* position: absolute; */
+   }
 .button
 {
 /* {border-style: double; */
  /* border-radius: 5px; */
  /* border-color: crimson; */
  font-size: 16px;
- height: 8em;
- width: 5em;
+ /* flex-wrap: wrap; */
+ flex-basis: 25%;
+  /* height: 8em; */
+    /* width: 50%; */
  position: relative;
  background-color: transparent;
- float:left;
+ background-color: violet;
+ /* float:left; */
  border: none;
  outline:0;
+ flex-grow: 1;
  z-index:10;
+ /* order: 7; */
+ /* clear: both; */
 }
 
+/* to draw stack of cards */
 .deck
 {border-style: double;
  border-radius: 5px;
- /* border-color: crimson; */
+ border-color: crimson;
  background-color: gray; 
+ flex-grow: 1;
  height: 7em;
  width: 5em;
  position: absolute;
- float: left;
- padding: auto;
- /* z-index: -10; */
- /* top: 0px;  */
- /* left: 0px; */
+
 }
 
 .cardFront
 {border-style: double;
+border-color: yellow;
  border-radius: 5px;
- margin-top: 8px;
- height: 7em;
- width: 5em;
- position: relative;
- margin-left: 50%;
+ /* height: 8em; */
+ /* width: 50%; */
+ flex-grow: 1;
+ /* order: 6; */
+ background-color: gray;
+ /* margin-top: 8px; */
+ /* height: 7em;
+ width: 5em; */
+ /* position: absolute; */
+ /* margin-left: 25%; */
 
 }
 
@@ -99,7 +122,7 @@
  margin: 0;
  position: absolute;              
  top: 50%;     
- left: 50%;
+ left: 25%;
  margin-right: -50%;                    
  transform: translate(-50%, -50%);
 }

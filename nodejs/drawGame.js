@@ -1,21 +1,4 @@
 
-
-
-
-//prints unshuffled/shuffled deck
-// function showDeck(){
-// 			let x = document.getElementById("myPara")
-// 			x.innerHTML = infectionDeck.join(", ")
-// 		}
-// function showShuffleDeck(){
-// 	shuffle(infectionDeck)
-// 	let x = document.getElementById("myPara")
-// 			x.innerHTML = infectionDeck.join(", ")
-// }
-
-
-
-
 //loads canvas and sets its width/height to css style + 2d space
 let canvas = document.getElementById('canvas')
 canvas.width = 1250
@@ -41,7 +24,8 @@ function drawMap(ctx, image){
 	//put city and connecting lines on the map after map image is louaded
 	drawConnection()
 	drawCity()
-	
+	cardDeck('inf','deck')
+	cardDeck('pl','deck')
 }
 
     // Create a new image object
@@ -52,18 +36,19 @@ function drawMap(ctx, image){
 
 
 //creates depth to the card deck
-for(var i=0; i < 5; i++){
-	var newDiv = document.createElement('div');
-	   newDiv.id = 'r';
-	   newDiv.className = 'deck';
-	   newDiv.style = `top:${(i*2)}px; left:${(i*2)}px; z-index: ${-(i+10)};`
+function cardDeck(id, className, o){
+	for(var i=0; i < 5; i++){
+		var newDiv = document.createElement('div');
+		newDiv.id = id;
+		newDiv.className = className;
+		newDiv.style = `top:${(i*2)}px; left:${(i*2)}px; z-index: ${-(i+10)}; }`
+		//order: ${(i+o)
 
-	var element = document.getElementsByClassName("cardSpace")
-	   element[0].appendChild(newDiv);
-
-	}
-let x = document.getElementsByTagName("div")	
-
+		var element = document.getElementsByClassName("cardSpace")
+		element[0].appendChild(newDiv);
+		}
+	let x = document.getElementsByTagName("div")	
+}
 
 
 
@@ -102,15 +87,11 @@ function drawConnection(){
 	
 //draws player pawn based on the role
 function drawPlayer(imageSource, position){
-
-
     var image = new Image();
-	// Set the image source and start loading
 	let x = position.x - 10
 	let y = position.y - 20
 	image.src = imageSource;
 	
-	console.log('imageSource')
 	if (!image.complete){
 		setTimeout(function(){
 			drawPlayer(imageSource, position);

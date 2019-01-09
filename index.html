@@ -21,13 +21,19 @@
 <!-- game code starts here -->
 <!-- <p > Draw Card </p> -->
 	<section class = "cardSpace">
-		<button class="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)">Draw Card INFdeck</button>
-		<div class = "cardFront"><p id = "card"></p></div>
-<canvas id="canvas" class="canvas">
-</canvas>
+		<section class = "INFdeck">
+			<button class="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)">Draw Card INFdeck</button>
+			<div class = "cardFront"><p id = "card"></p></div>
+		</section>
+		<section class = "PLAYdeck">
+			<button class="button" onclick = "drawINFcard(playDeck, usedPlayDeck)">Draw Card PLAYdeck</button>
+			<div class = "cardFront"><p id = "card"></p></div>
+		</section>
+
 
 	</section>
-
+<canvas id="canvas" class="canvas">
+</canvas>
 
 
 <script type="text/javascript" src="nodejs/drawGame.js">
