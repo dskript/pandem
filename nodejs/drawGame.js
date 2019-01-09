@@ -1,36 +1,6 @@
 
-let infectionDeck = ['ny', 'bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'lima', 'bogota', 'saopaulo',
-'buenosaires', 'mexicocity', 'miami', 'la','atlanta','chicago','wdc','montreal'
-];
-let usedInfDeck = []
-
-// let playerRoles = ['Medic', 'Scientist', 'Researcher', 'Quarantine Specialist', 'Operations Expert','Dispacther','Contingency Planner']
-
-//creates visiable depth to the card deck
-for(var i=0; i < 5; i++){
-	var newDiv = document.createElement('div');
-	   newDiv.id = 'r';
-	   newDiv.className = 'deck';
-	   newDiv.style = `top:${(i*2)}px; left:${(i*2)}px; z-index: ${-(i+10)};`
-
-	var element = document.getElementsByClassName("cardSpace")
-	   element[0].appendChild(newDiv);
-
-	}
-let x = document.getElementsByTagName("div")	
 
 
-/**
- * Shuffles deck
- */
-
-function shuffle(a) {
-
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-}
 
 //prints unshuffled/shuffled deck
 // function showDeck(){
@@ -43,28 +13,7 @@ function shuffle(a) {
 // 			x.innerHTML = infectionDeck.join(", ")
 // }
 
-//picks up a card from infection deck
-function drawINFcard(drawDeck, usedDeck){
-	usedDeck.unshift(drawDeck.shift())
-	let x = document.getElementById("card")
-	x.innerHTML = cities[usedDeck[0]].name
-	//updates numbers of cards in Game state
-	state.numOfCards = infectionDeck.length
-	var parent = document.getElementsByClassName("cardSpace")
-	var child = document.getElementById("r");
-	// game ends when Infection deck has 2 cards left
-	if(infectionDeck.length <= 2){
-		parent[0].removeChild(child)
-		console.log("Game Over",infectionDeck.length)
-		return
-	} else if(infectionDeck.length <= 5){
-			parent[0].removeChild(child)
-			console.log(infectionDeck.length)
-		}
-	//infects city based on picked up card
-	infect(usedDeck[0])
-	// infect('Paris')
-}
+
 
 
 //loads canvas and sets its width/height to css style + 2d space
@@ -102,6 +51,22 @@ function drawMap(ctx, image){
     drawMap(ctx, image);
 
 
+//creates depth to the card deck
+for(var i=0; i < 5; i++){
+	var newDiv = document.createElement('div');
+	   newDiv.id = 'r';
+	   newDiv.className = 'deck';
+	   newDiv.style = `top:${(i*2)}px; left:${(i*2)}px; z-index: ${-(i+10)};`
+
+	var element = document.getElementsByClassName("cardSpace")
+	   element[0].appendChild(newDiv);
+
+	}
+let x = document.getElementsByTagName("div")	
+
+
+
+
 //draw city location as color dot on the map. color corresponds to deseases that are native to each city
 function drawCity(){
 	for (let k in cities){
@@ -135,63 +100,24 @@ function drawConnection(){
 		}
 	}
 	
-//infects city by with native disease. 
-function infect(INFcity){
-	let setX = 0 
-	let setY = 0
-	let INFstateCount = cities[INFcity].INFstate.red + cities[INFcity].INFstate.cyan + cities[INFcity].INFstate.yellow + cities[INFcity].INFstate.black
-	if (INFstateCount === 1){
-		setX = 9, setY = - 16 	
-	}
-	if (INFstateCount === 2){
-		setX = - 9, setY = - 16 	
-	}
-	//checks for outbreak
-	if (INFstateCount === 3){
-		console.log('outbreak + chain reaction!')
-	}
-		let color = cities[INFcity].color
-		let x = setX + cities[INFcity].position.x
-		let y = setY + cities[INFcity].position.y
-		ctx.fillStyle = color
-		ctx.strokeStyle = 'white'
-		ctx.beginPath();
-		ctx.arc(x, y +12, 5, 0, Math.PI * 2);
-		ctx.fill()
-		ctx.stroke();
-		//updates state with infected city name and disease color
-		cities[INFcity].INFstate[color]++
-		//updates total color per disease color
-		state[color]++
-		return 
-	}	
-
-
-//returns city disease count from Game state
-function isOutbreak(cityName){
-	let diseaseCount = state.city[cityName].length
-	let colorCount = Object.values(state.city).flat()
-
-	console.log(state.red)
-	// console.log(state.city[cityName])
-	return diseaseCount
-}
-
-function countINF(){
-	console.log(Object.values(state))
-}
-
-
-// countINF()
-
+//draws player pawn based on the role
 function drawPlayer(imageSource, position){
+
+
     var image = new Image();
 	// Set the image source and start loading
 	let x = position.x - 10
 	let y = position.y - 20
 	image.src = imageSource;
-	ctx.drawImage(image, x, y, 20, 30);
-
+	
+	console.log('imageSource')
+	if (!image.complete){
+		setTimeout(function(){
+			drawPlayer(imageSource, position);
+		}, 50);
+		return;
+	  }
+ctx.drawImage(image, x, y, 20, 30);
 }
 
 
