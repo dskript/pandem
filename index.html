@@ -17,18 +17,24 @@
 	<p id="myPara"> </p>
 	<button type="button" onclick = "showGS(state)" >Game State </button>
 	<p id="myPara2"> </p>
+	<!-- <button type="button" onclick = "showHand()" >My Hand </button>
+	<p id="handB"> </p> -->
 
 <!-- game code starts here -->
 <!-- <p > Draw Card </p> -->
 	<section class = "cardSpace">
 		<section class = "INFdeck">
-			<button class="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)">Draw Card INFdeck</button>
+			<button class="button" onclick = "drawINFcard()">INF deck</button>
 			<div class = "cardFront"><p id = "card"></p></div>
 		</section>
 		<section class = "PLAYdeck">
-			<button class="button" onclick = "drawINFcard(playDeck, usedPlayDeck)">Draw Card PLAYdeck</button>
-			<div class = "cardFront"><p id = "card"></p></div>
+			<button class="button" onclick = "drawPLAYcard()">PLAY deck</button>
+			<div class = "cardFront"><p id = "playcard"></p></div>
 		</section>
+		<!-- <section class = "hand">
+			<button class="button" onclick = "drawPLAYcard()">Hand</button>
+			<div class = "cardFront"><p id = "playcard"></p></div>
+		</section> -->
 
 
 	</section>
@@ -38,13 +44,14 @@
 
 <script type="text/javascript" src="nodejs/drawGame.js">
 </script>
+
 <script type="text/javascript" src="nodejs/newGame.js">
+</script>
+
+<script type="text/javascript" src="nodejs/playGame.js">
 </script>
 <script type="text/javascript" src="nodejs/gameState.js">
 </script>
-<script type="text/javascript" src="nodejs/playGame.js">
-</script>
-
 
      
 </body>

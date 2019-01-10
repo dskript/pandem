@@ -35,7 +35,7 @@
     /* background-color: aqua; */
     display: flex;
     height: 8em;
-    width: 24em; 
+    width: 26em; 
     position: relative;
     }
     
@@ -48,6 +48,7 @@
 .PLAYdeck{
     display: flex;
     flex-grow: 1;
+    
     /* background-color: green; */
    }
 
@@ -73,6 +74,7 @@
     height: 7em;
     width: 5em;
     position: absolute;
+    
 
     }
 
@@ -81,25 +83,19 @@
     border-color: black;
     border-radius: 5px;
     flex-grow: 1;
-    /* background-color: gray; */
-`}
+    height: 7em;
+    width: 40%;
+    position: relative;
+    /* background-color: red; */
+}
 
 
 /*text position in the card*/
-.cardBack p {
-    margin: 0;
-    position: absolute;              
-    top: 50%;     
-    left: 50%;
-    margin-right: -50%;                    
-    transform: translate(-50%, -50%);
-    }
-
 .cardFront p {
     margin: 0;
     position: absolute;              
     top: 50%;     
-    left: 25%;
+    left: 50%;
     margin-right: -50%;                    
     transform: translate(-50%, -50%);
     }

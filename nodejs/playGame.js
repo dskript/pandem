@@ -1,57 +1,50 @@
 //picks up a card from infection deck
-function drawINFcard(drawDeck, usedDeck){
-	usedDeck.unshift(drawDeck.shift())
+function drawINFcard(){
+	usedInfDeck.unshift(infectionDeck.shift())
 	let x = document.getElementById("card")
-	x.innerHTML = cities[usedDeck[0]].name
+	x.innerHTML = cities[usedInfDeck[0]].name
 	//updates numbers of cards in Game state
 	state.numOfCards = infectionDeck.length
-	var parent = document.getElementsByClassName("cardSpace")
+	var parent = document.getElementsByClassName("INFdeck")
 	var child = document.getElementById("inf");
 	// game ends when Infection deck has 2 cards left
-	if(infectionDeck.length <= 2){
+	if(infectionDeck.length <= 5){
 		parent[0].removeChild(child)
-		console.log("Game Over",infectionDeck.length)
-		return
-	} else if(infectionDeck.length <= 5){
-			parent[0].removeChild(child)
-			console.log(infectionDeck.length)
+		console.log(infectionDeck.length)
 		}
-	//infects city based on picked up card
-	infect(usedDeck[0])
-	// infect('Paris')
+    //infects city based on picked up card
+    infect(usedInfDeck[0])
+	return usedInfDeck[0]
 }
 
 
-//infects city by with native disease. 
-function infect(INFcity){
-	let setX = 0 
-	let setY = 0
-	let INFstateCount = cities[INFcity].INFstate.red + cities[INFcity].INFstate.cyan + cities[INFcity].INFstate.yellow + cities[INFcity].INFstate.black
-	if (INFstateCount === 1){
-		setX = 9, setY = - 16 	
-	}
-	if (INFstateCount === 2){
-		setX = - 9, setY = - 16 	
-	}
-	//checks for outbreak
-	if (INFstateCount === 3){
-		console.log('outbreak + chain reaction!')
-	}
-		let color = cities[INFcity].color
-		let x = setX + cities[INFcity].position.x
-		let y = setY + cities[INFcity].position.y
-		ctx.fillStyle = color
-		ctx.strokeStyle = 'white'
-		ctx.beginPath();
-		ctx.arc(x, y +12, 5, 0, Math.PI * 2);
-		ctx.fill()
-		ctx.stroke();
-		//updates state with infected city name and disease color
-		cities[INFcity].INFstate[color]++
-		//updates total color per disease color
-		state[color]++
-		return 
-	}	
+//picks up a card from player deck
+function drawPLAYcard(){
+    let activePlayer = players.player1
+    usedPlayDeck.unshift(playDeck.shift())
+	let x = document.getElementById("playcard")
+    x.innerHTML = playcards[usedPlayDeck[0]].name
+    
+    //add card to players hand
+    activePlayer.hand.push(playcards[usedPlayDeck[0]])
+
+    // game ends when Player deck has 2 cards left
+	var parent = document.getElementsByClassName("PLAYdeck")
+    var child = document.getElementById("pl");
+	if(playDeck.length <= 2){
+		parent[0].removeChild(child)
+		console.log("Game Over",playDeck.length)
+		return
+	}else if(playDeck.length <= 5){
+			parent[0].removeChild(child)
+			console.log(playDeck.length)
+    }
+    // check number of cards in player's hand before ending the turn    
+    let cardCount = activePlayer.hand.length   
+        console.log(activePlayer.hand)
+        return cardCount
+}
+	
 
 
 //returns city disease count from Game state

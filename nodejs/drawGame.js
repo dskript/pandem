@@ -24,8 +24,8 @@ function drawMap(ctx, image){
 	//put city and connecting lines on the map after map image is louaded
 	drawConnection()
 	drawCity()
-	cardDeck('inf','deck')
-	cardDeck('pl','deck')
+	cardDeck('inf','deck', 'INFdeck', 1)
+	cardDeck('pl','deck', 'PLAYdeck', 50)
 }
 
     // Create a new image object
@@ -35,16 +35,16 @@ function drawMap(ctx, image){
     drawMap(ctx, image);
 
 
-//creates depth to the card deck
-function cardDeck(id, className, o){
+//creates 5card depth to INF & PLAY decks
+function cardDeck(id, className, elementName, num){
 	for(var i=0; i < 5; i++){
 		var newDiv = document.createElement('div');
 		newDiv.id = id;
 		newDiv.className = className;
-		newDiv.style = `top:${(i*2)}px; left:${(i*2)}px; z-index: ${-(i+10)}; }`
-		//order: ${(i+o)
+		// newDiv.style = `order: ${(i)}; z-index: ${-(i+10)};`
+		newDiv.style = `top:${(i)}%; left:${(i+num)}%; z-index: ${-(i+10)};`
 
-		var element = document.getElementsByClassName("cardSpace")
+		var element = document.getElementsByClassName(elementName)
 		element[0].appendChild(newDiv);
 		}
 	let x = document.getElementsByTagName("div")	
@@ -101,6 +101,41 @@ function drawPlayer(imageSource, position){
 ctx.drawImage(image, x, y, 20, 30);
 }
 
+//infects city with native disease. 
+function infect(INFcity){
+	let setX = 0 
+	let setY = 0
+	let INFstateCount = cities[INFcity].INFstate.red + cities[INFcity].INFstate.cyan + cities[INFcity].INFstate.yellow + cities[INFcity].INFstate.black
+	if (INFstateCount === 1){
+		setX = 9, setY = - 16 	
+	}
+	if (INFstateCount === 2){
+		setX = - 9, setY = - 16 	
+	}
+	//checks for outbreak
+	if (INFstateCount === 3){
+		console.log('outbreak + chain reaction!')
+	}
+		let color = cities[INFcity].color
+		let x = setX + cities[INFcity].position.x
+		let y = setY + cities[INFcity].position.y
+		ctx.fillStyle = color
+		ctx.strokeStyle = 'white'
+		ctx.beginPath();
+		ctx.arc(x, y +12, 5, 0, Math.PI * 2);
+		ctx.fill()
+		ctx.stroke();
+		//updates state with infected city name and disease color
+		cities[INFcity].INFstate[color]++
+		//updates total count per disease color
+		state[color]++
+		return 
+	}	
+function showHand(player){
+	let x = document.getElementById("hand")
+	x.innerHTML = infectionDeck.join(", ")
+
+}
 
 //mouse position, helper function to get x&y coords
 
