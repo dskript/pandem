@@ -25,7 +25,7 @@ function drawMap(ctx, image){
 	drawConnection()
 	drawCity()
 	cardDeck('inf','deck', 'INFdeck', 1)
-	cardDeck('pl','deck', 'PLAYdeck', 50)
+	cardDeck('pl','deck', 'PLAYdeck', 1)
 }
 
     // Create a new image object
@@ -131,9 +131,36 @@ function infect(INFcity){
 		state[color]++
 		return 
 	}	
+
+
+function drawResearchStation(cityName){
+	var image = new Image();
+	let x = cities[cityName].position.x - 15
+	let y = cities[cityName].position.y - 35
+	image.src = './research_station.png'
+	
+	if (!image.complete){
+		setTimeout(function(){
+			drawResearchStation(cityName);
+		}, 50);
+		return;
+	  }
+ctx.drawImage(image, x, y, 30, 24);
+
+}	
 function showHand(player){
 	let x = document.getElementById("hand")
-	x.innerHTML = infectionDeck.join(", ")
+	let text = 'Your Hand: '
+	for(let i = 0; i < players[player].hand.length; i++){
+	text = text + players[player].hand[i].name + ", "
+	}
+	text = text.slice(0, -2)
+	x.innerHTML = text
+	
+	let r = document.getElementById("role")
+	r.innerHTML = players[player].role.name
+	console.log(infectionDeck)
+	
 
 }
 

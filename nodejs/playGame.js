@@ -14,7 +14,9 @@ function drawINFcard(){
 		}
     //infects city based on picked up card
     infect(usedInfDeck[0])
-	return usedInfDeck[0]
+    // console.log(usedInfDeck)
+    return usedInfDeck[0]
+    
 }
 
 
@@ -41,7 +43,6 @@ function drawPLAYcard(){
     }
     // check number of cards in player's hand before ending the turn    
     let cardCount = activePlayer.hand.length   
-        console.log(activePlayer.hand)
         return cardCount
 }
 	

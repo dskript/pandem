@@ -1,9 +1,10 @@
-let infectionDeck = ['ny', 'ny','ny','bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'lima', 'bogota', 'saopaulo',
+let infectionDeck = ['ny', 'bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'lima', 'bogota', 'saopaulo',
 'buenosaires', 'mexicocity', 'miami', 'la','atlanta','chicago','wdc','montreal'
 ];
 let usedInfDeck = []
 
 let playDeck = ['event1', 'event2', 'event3', 'event4', 'event5','ny', 'bangkok', 'sf', 'hongkong', 'paris', 'santiago', 'lima', 'bogota', 'saopaulo',
+'buenosaires', 'mexicocity', 'miami', 'la','atlanta','chicago','wdc','montreal'
 ];
 let usedPlayDeck = []
 
@@ -17,12 +18,14 @@ function newGame(){
 	shuffle(rolesArr)
 	shuffle(playDeck)
 
-	//assigns role with role actions & draw pawn
+	//draw research station in Atlanta
+	drawResearchStation('atlanta')
+
+	//assigns role & draw player
 	players.player1.role = roles[rolesArr.shift()]
-	// roles[rolesArr.shift()]
 	rolePawn = players.player1.role
 	drawPlayer(rolePawn.image, players.player1.position)
-	
+
 	//deal cards from Player deck accoridng to the total number of players
 		let playersNum  = state.totalPlayers
 		let playCards = 0
@@ -41,6 +44,8 @@ function newGame(){
 			playCards --
 		drawPLAYcard()
 		}
+	//display player's hand
+		showHand('player1')
 	//infect cities: 3 cards - 3 INF per city, 3 cards - 2 INF per city, 3 cards - 1 INF per city
 		infectOnStart(3,2)
 		infectOnStart(3,1)
@@ -78,9 +83,10 @@ function shuffle(a) {
 
 
 // prints unshuffled/shuffled deck
-function showDeck(){
+function showDeck(deck){
 			let x = document.getElementById("myPara")
-			x.innerHTML = infectionDeck.join(", ")
+			x.innerHTML = deck.join(", ")
+			// console.log(infectionDeck)
 		}
 function showShuffleDeck(){
 	shuffle(infectionDeck)
