@@ -128,7 +128,6 @@ let players = {
 	player1: {
 		role: 'no role',
 		position: cities.atlanta.position,
-		hand: {city:[],event:[]},
 		state: 'out of turn',
 		actionCount: 4,
 		hand: [],
@@ -136,6 +135,18 @@ let players = {
 		
 	}
 }
+
+
+// class Player {
+// 	constructor(role){
+// 		this.turn = 0
+// 		this.role = role
+// 		this.position = cities.atlanta.position
+// 		// this.state: 'out of turn',
+// 		// this.actionCount = 4,
+// 		this.hand = []	
+// 	}
+// }
 
 let roles = {
 	medic:{
@@ -315,8 +326,9 @@ let state = {
 	cureBlue: "no cure",
 	cureYellow: "no cure",
 	cureBlack: "no cure",
-	totalPlayers: 2,
+	totalPlayers: 0,
 	activePlayer: players.player1,
+	difficulty: 'none',
 }
 
 
@@ -324,6 +336,10 @@ function showGS(){
 	let x = document.getElementById("myPara2")
 			x.innerHTML = state.numOfCards
 }
+
+// function closeWindow(){
+// 	window.close()
+// }
 
 //alex
 

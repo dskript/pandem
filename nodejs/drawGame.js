@@ -159,9 +159,7 @@ function showHand(player){
 	
 	let r = document.getElementById("role")
 	r.innerHTML = players[player].role.name
-	console.log(infectionDeck)
 	
-
 }
 
 //mouse position, helper function to get x&y coords

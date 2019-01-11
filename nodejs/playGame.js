@@ -21,7 +21,7 @@ function drawINFcard(){
 
 
 //picks up a card from player deck
-function drawPLAYcard(){
+function dealPLAYcard(){
     let activePlayer = players.player1
     usedPlayDeck.unshift(playDeck.shift())
 	let x = document.getElementById("playcard")
@@ -29,6 +29,7 @@ function drawPLAYcard(){
     
     //add card to players hand
     activePlayer.hand.push(playcards[usedPlayDeck[0]])
+    console.log(activePlayer.hand)
 
     // game ends when Player deck has 2 cards left
 	var parent = document.getElementsByClassName("PLAYdeck")

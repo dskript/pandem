@@ -13,6 +13,7 @@ let usedPlayDeck = []
 	
 //Start new game, shuffles everything in the game
 function newGame(){
+	setUpPlayersDifficulty()
 	shuffle(infectionDeck)
 	rolesArr = Object.keys(roles)
 	shuffle(rolesArr)
@@ -28,9 +29,12 @@ function newGame(){
 
 	//deal cards from Player deck accoridng to the total number of players
 		let playersNum  = state.totalPlayers
+		
 		let playCards = 0
 		switch (playersNum){
+			
 			case 2:
+			console.log('here')
 			playCards = 4;
 			break;
 			case 3:
@@ -39,10 +43,11 @@ function newGame(){
 			case 4:
 			playCards = 2;
 			break;
+			
 		}
 		while(playCards > 0){
 			playCards --
-		drawPLAYcard()
+		dealPLAYcard()
 		}
 	//display player's hand
 		showHand('player1')
@@ -51,7 +56,16 @@ function newGame(){
 		infectOnStart(3,1)
 		infectOnStart(3,0)
 	}
-	
+//opens input window for user to set number of players in the game	
+function setUpPlayersDifficulty(){
+let input = 0
+	do{
+		 input = prompt("Enter number of players (2-4)");
+	}while(input == null || input == "" || input <=1 || input > 4);
+	state.totalPlayers = Number(input)
+	console.log(state.totalPlayers)
+	//auto-set difficult level to Introductory
+}
 
 function infectOnStart(CardNum, INFnum){
 	if (CardNum === 0){
