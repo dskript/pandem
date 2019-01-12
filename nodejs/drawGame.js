@@ -89,13 +89,10 @@ function drawConnection(){
 function drawPlayer(imageSource, player){
 	var image = new Image();
 	
-	let x = player.position.x - 10 
+	let x = player.position.x - 10 + drawPlayerInSameCity(player)
 	let y = player.position.y - 20
 	image.src = imageSource;
-	// if (isInSameCity(player)){
-	// 	y = y - 20
-	// 	console.log(y)
-	// }
+
 	if (!image.complete){
 		setTimeout(function(){
 			drawPlayer(imageSource, player);
@@ -103,6 +100,24 @@ function drawPlayer(imageSource, player){
 		return;
 	  }
 ctx.drawImage(image, x, y, 20, 30);
+
+
+
+
+
+// var newDiv = document.createElement('div');
+// 		newDiv.id = id;
+// 		newDiv.className = className;
+
+// 		newDiv.style = `top:${(i)}%; left:${(i+num)}%; z-index: ${-(i+10)};`
+
+// 		var element = document.getElementsByClassName(elementName)
+// 		element[0].appendChild(newDiv);
+// 		}
+// 	let x = document.getElementsByTagName("div")	
+
+
+
 }
 
 //infects city with native disease. 
@@ -155,9 +170,9 @@ ctx.drawImage(image, x, y, 30, 24);
 //display players hands and roles
 function showHand(player){
 	let x = document.getElementById("hand"+player.turnOrder)
-	console.log(x)
+	// console.log(x)
 	let text = 'Your Hand: '
-	console.log(player)
+	// console.log(player)s
 	for(let i = 0; i < player.hand.length; i++){
 		// console.log(state.players)
 	text = text + player.hand[i].name + ", "

@@ -340,12 +340,21 @@ function showGS(){
 			x.innerHTML = state.numOfCards
 }
 
-function isInSameCity(currentPlayer){
-		// console.log(currentPlayer.position === state.players[state.players.length-1].position)
-		return currentPlayer.position === state.players[state.players.length-1].position
-
-
+//return number to ofset X position of player pawn, if there are more than 1 player in the same city
+function drawPlayerInSameCity(currentPlayer){
+		switch(currentPlayer.turnOrder){
+			case 4:
+			return  21
+			case 3:
+			return  14
+			case 2:
+			return  7
+			case 1:
+			return  0
+		}
 }
+
+
 
 function checkTurn(){
 	let turn = state.turn
