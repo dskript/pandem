@@ -28,7 +28,8 @@ function dealPLAYcard(activePlayer){
 	let x = document.getElementById("playcard")
     x.innerHTML = playcards[usedPlayDeck[0]].name
     
-    //add card to players hand
+	//add card to players hand
+	//   console.log(activePlayer)
     activePlayer.hand.push(playcards[usedPlayDeck[0]])
     // console.log(activePlayer.hand)
 

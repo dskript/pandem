@@ -328,8 +328,9 @@ let state = {
 	cureYellow: "no cure",
 	cureBlack: "no cure",
 	totalPlayers: 0,
-	players:[],
+	players:{},
 	turn: 1,
+	actions: 4,
 	// activePlayer: players.player1,
 	difficulty: 'none',
 }
@@ -340,7 +341,7 @@ function showGS(){
 			x.innerHTML = state.numOfCards
 }
 
-//return number to ofset X position of player pawn, if there are more than 1 player in the same city
+//return number to ofset X position of player pawn, if there are more than 1 player in the same
 function drawPlayerInSameCity(currentPlayer){
 		switch(currentPlayer.turnOrder){
 			case 4:
@@ -355,13 +356,15 @@ function drawPlayerInSameCity(currentPlayer){
 }
 
 
-
+//returns player obj who is currently in turn position
 function checkTurn(){
 	let turn = state.turn
 	// let activePlayer = 
-	for(let k of state.players){
-		if(k.turnOrder === turn){
-			return k
+	for(let k in state.players){
+		if(state.players[k].turnOrder === turn){
+				// console.log(state.players[k])
+	
+			return state.players[k]
 		}
 	}
 }

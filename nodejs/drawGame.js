@@ -90,7 +90,7 @@ function drawPlayer(imageSource, player){
 	var image = new Image();
 	
 	let x = player.position.x - 10 + drawPlayerInSameCity(player)
-	let y = player.position.y - 20
+	let y = player.position.y - 35
 	image.src = imageSource;
 
 	if (!image.complete){
@@ -171,7 +171,7 @@ ctx.drawImage(image, x, y, 30, 24);
 function showHand(player){
 	let x = document.getElementById("hand"+player.turnOrder)
 	// console.log(x)
-	let text = 'Your Hand: '
+	let text = "<b>" + player.role.name + "<br> Your Hand:</b>"
 	// console.log(player)s
 	for(let i = 0; i < player.hand.length; i++){
 		// console.log(state.players)
@@ -180,11 +180,17 @@ function showHand(player){
 	text = text.slice(0, -2)
 	x.innerHTML = text
 	
-	let r = document.getElementById("role"+player.turnOrder)
-	r.innerHTML = player.role.name
 	
 }
 
+function showTurnSatus(currentTurn){
+	let x = document.getElementById('turnStatus')
+	// console.log(x)
+	let player = checkTurn()
+
+	let text = player.role.name + "<br> # of Actions: " + state.actions
+	x.innerHTML = text
+}
 
 function showHandButton() {
 	var x = document.getElementsByClassName("player");

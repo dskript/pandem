@@ -23,8 +23,10 @@ function newGame(){
 	drawResearchStation('atlanta')
 
 	//creates new players, assigns role and set temporary turn order
-	for (let i = 0; i < state.totalPlayers; i++){
-		state.players.push(new Player(roles[rolesArr.shift()], i+1))
+	for (let i = 1; i <= state.totalPlayers; i++){
+		// state.players.push(new Player(roles[rolesArr.shift()], i+1))
+		state.players[i] = new Player(roles[rolesArr.shift()], i)
+		
 		// console.log(state.players)
 		let pawn = state.players[i].role
 		drawPlayer(pawn.image, state.players[i])
@@ -36,7 +38,7 @@ function newGame(){
 
 
 	//deals cards and displays hand for all players
-	let dealFullRound = state.totalPlayers
+	let dealFullRound = state.totalPlayers 
 	while(dealFullRound > 0){
 		//checks how many cards to deal based on total number of players. 
 		let playersNum  = state.totalPlayers
@@ -64,7 +66,10 @@ function newGame(){
 		dealFullRound --
 		state.turn ++
 	}
-		
+	//resets state turn to 1 **changes this once population defiens who goes first   <<< ------------------------------------
+	state.turn = 1
+	//displayer role based on turn order and number of remaining actions 
+		showTurnSatus(state.turn)	
 	//infect cities: 3 cards - 3 INF per city, 3 cards - 2 INF per city, 3 cards - 1 INF per city
 		infectOnStart(3,2)
 		infectOnStart(3,1)
