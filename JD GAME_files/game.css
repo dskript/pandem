@@ -86,11 +86,9 @@
     }
 
 .player {
-    display: flex;
-    flex: 1;
-    /* background-color: blue; */
-    border-style: double;
-    border-color: black;
+    /* display: flex; */
+    /* flex: 1; */
+    background-color: blue;
     /* float: right;
     float: top; */
 

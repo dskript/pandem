@@ -124,22 +124,22 @@ let cities = {
 	},
 }
 
-// let players = {
-// 	player1: {
-// 		role: 'no role',
-// 		position: cities.atlanta.position,
-// 		state: 'out of turn',
-// 		actionCount: 4,
-// 		hand: [],
-// 		// action: drive() fly(),
+let players = {
+	player1: {
+		role: 'no role',
+		position: cities.atlanta.position,
+		state: 'out of turn',
+		actionCount: 4,
+		hand: [],
+		// action: drive() fly(),
 		
-// 	}
-// }
+	}
+}
 
 
 class Player {
-	constructor(role, x){
-		this.turnOrder = x
+	constructor(role){
+		this.turn = 0
 		this.role = role
 		this.position = cities.atlanta.position
 		// this.state: 'out of turn',
@@ -147,7 +147,6 @@ class Player {
 		this.hand = []	
 	}
 }
-
 
 let roles = {
 	medic:{
@@ -311,10 +310,12 @@ let playcards = {
 }
 
 
-function position(x, y){
-	this.x = x,
-	this.y = y
-}
+// class position{
+// 	constructor(x, y){
+// 	this.x = x
+// 	this.y = y
+// 	}
+// }
 
 let state = {
 	outbreakCount: 0,
@@ -328,9 +329,8 @@ let state = {
 	cureYellow: "no cure",
 	cureBlack: "no cure",
 	totalPlayers: 0,
-	players:[],
-	turn: 1,
-	// activePlayer: players.player1,
+	Player:{},
+	activePlayer: players.player1,
 	difficulty: 'none',
 }
 
@@ -340,22 +340,6 @@ function showGS(){
 			x.innerHTML = state.numOfCards
 }
 
-function isInSameCity(currentPlayer){
-		// console.log(currentPlayer.position === state.players[state.players.length-1].position)
-		return currentPlayer.position === state.players[state.players.length-1].position
-
-
-}
-
-function checkTurn(){
-	let turn = state.turn
-	// let activePlayer = 
-	for(let k of state.players){
-		if(k.turnOrder === turn){
-			return k
-		}
-	}
-}
 // function closeWindow(){
 // 	window.close()
 // }

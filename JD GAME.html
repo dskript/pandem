@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)file:///Users/dska/STUDY/pandem/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title> JD GAME </title>
+	<link rel="stylesheet" type="text/css" href="./JD GAME_files/game.css">
+	
+
+</head>
+
+
+<body>&gt;
+	
+	<button type="button" onclick="showDeck(infectionDeck)">Inf Deck </button>
+	<button type="button" onclick="showDeck(usedInfDeck)">Used Inf Deck </button>
+	<!-- <button type="button" onclick = "drawINFcard(infectionDeck, usedInfDeck)" >Draw Card </button> -->
+	<button type="button" onclick="newGame()">Start Game</button>
+	<p id="myPara"> </p>
+	<button type="button" onclick="showGS(state)">Game State </button>
+	<p id="myPara2"> </p>
+	<!-- <button type="button" onclick = "showHand()" >My Hand </button>
+	<p id="handB"> </p> -->
+
+<!-- game code starts here -->
+<!-- <p > Draw Card </p> -->
+	<section class="cardSpace">
+		<section class="INFdeck">
+			<button class="button" onclick="drawINFcard()">INF deck</button>
+			<div class="cardFront"><p id="card"></p></div>
+		</section>
+		<section class="PLAYdeck">
+			<button class="button" onclick="drawPLAYcard()">PLAY deck</button>
+			<div class="cardFront"><p id="playcard"></p></div>	
+		</section>
+		<section class="player">
+			<div><p id="role"></p><p id="hand"></p></div>
+		</section>
+	</section>
+	
+<canvas id="canvas" class="canvas" width="1250" height="750">
+</canvas>
+
+
+<script type="text/javascript" src="./JD GAME_files/drawGame.js">
+</script>
+
+<script type="text/javascript" src="./JD GAME_files/newGame.js">
+</script>
+
+<script type="text/javascript" src="./JD GAME_files/playGame.js">
+</script>
+<script type="text/javascript" src="./JD GAME_files/gameState.js">
+</script>
+
+     
+
+
+</body></html>

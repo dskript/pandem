@@ -86,19 +86,15 @@ function drawConnection(){
 	}
 	
 //draws player pawn based on the role
-function drawPlayer(imageSource, player){
-	var image = new Image();
-	
-	let x = player.position.x - 10 
-	let y = player.position.y - 20
+function drawPlayer(imageSource, position){
+    var image = new Image();
+	let x = position.x - 10
+	let y = position.y - 20
 	image.src = imageSource;
-	// if (isInSameCity(player)){
-	// 	y = y - 20
-	// 	console.log(y)
-	// }
+	
 	if (!image.complete){
 		setTimeout(function(){
-			drawPlayer(imageSource, player);
+			drawPlayer(imageSource, position);
 		}, 50);
 		return;
 	  }
@@ -150,35 +146,21 @@ function drawResearchStation(cityName){
 		return;
 	  }
 ctx.drawImage(image, x, y, 30, 24);
-}	
 
-//display players hands and roles
+}	
 function showHand(player){
-	let x = document.getElementById("hand"+player.turnOrder)
-	console.log(x)
+	let x = document.getElementById("hand")
 	let text = 'Your Hand: '
-	console.log(player)
-	for(let i = 0; i < player.hand.length; i++){
-		// console.log(state.players)
-	text = text + player.hand[i].name + ", "
+	for(let i = 0; i < players[player].hand.length; i++){
+	text = text + players[player].hand[i].name + ", "
 	}
 	text = text.slice(0, -2)
 	x.innerHTML = text
 	
-	let r = document.getElementById("role"+player.turnOrder)
-	r.innerHTML = player.role.name
+	let r = document.getElementById("role")
+	r.innerHTML = players[player].role.name
 	
 }
-
-
-function showHandButton() {
-	var x = document.getElementsByClassName("player");
-	if (x.style.display === "none") {
-	  x.style.display = "block";
-	} else {
-	  x.style.display = "none";
-	}
-  }
 
 //mouse position, helper function to get x&y coords
 

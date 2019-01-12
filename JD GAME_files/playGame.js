@@ -21,9 +21,8 @@ function drawINFcard(){
 
 
 //picks up a card from player deck
-function dealPLAYcard(activePlayer){
-	// let turn = state.turn
-    // let activePlayer = state
+function dealPLAYcard(){
+    let activePlayer = players.player1
     usedPlayDeck.unshift(playDeck.shift())
 	let x = document.getElementById("playcard")
     x.innerHTML = playcards[usedPlayDeck[0]].name
