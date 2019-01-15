@@ -86,16 +86,16 @@ function drawConnection(){
 	}
 	
 //draws player pawn based on the role
-function drawPlayer(imageSource, player){
+function drawPlayer(player){
 	var image = new Image();
 	
-	let x = player.position.x - 10 + drawPlayerInSameCity(player)
-	let y = player.position.y - 35
-	image.src = imageSource;
+	let x = player.position.position.x - 10 + drawPlayerInSameCity(player)
+	let y = player.position.position.y - 35
+	image.src = player.role.image
 
 	if (!image.complete){
 		setTimeout(function(){
-			drawPlayer(imageSource, player);
+			drawPlayer(player);
 		}, 50);
 		return;
 	  }
@@ -183,12 +183,12 @@ function showHand(player){
 	
 }
 
-function showTurnSatus(currentTurn){
+function showTurnSatus(destination){
 	let x = document.getElementById('turnStatus')
 	// console.log(x)
 	let player = checkTurn()
 
-	let text = player.role.name + "<br> # of Actions: " + state.actions
+	let text = player.role.name + "<br> # of Actions: " + state.actions + destination
 	x.innerHTML = text
 }
 
@@ -203,14 +203,7 @@ function showHandButton() {
 
 //mouse position, helper function to get x&y coords
 
-	function writeMessage(canvas, message) {
-	// var context = canvas.getContext('2d');
-	// // ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// ctx.font = '18pt Calibri';
-	// ctx.fillStyle = 'black';
-	// ctx.fillText(message, 10, 25);
-	console.log(message)
-	}
+
 	function getMousePos(canvas, evt) {
 	var rect = canvas.getBoundingClientRect();
 	return {
@@ -221,11 +214,45 @@ function showHandButton() {
 	//   var canvas = document.getElementById('canvas');
 	//   var ctx = canvas.getctx('2d');
 
-	canvas.addEventListener('mousemove', function(evt) {
+	canvas.addEventListener('mousedown', function(evt) {
 	var mousePos = getMousePos(canvas, evt);
 	var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-	writeMessage(canvas, message);
+	console.log(message)
 	}, false);
 
+
+
+	function getMousePos(canvas, evt) {
+		var rect = canvas.getBoundingClientRect();
+		return {
+			x: evt.clientX - rect.left,
+			y: evt.clientY - rect.top
+		};
+		}
+	function relocatePlayer(destinationArr, currentPlayer){
+		console.log(destinationArr)
+		canvas.addEventListener('mousedown', function(evt) {
+			var mousePos = getMousePos(canvas, evt);
+			let cityName = ""
+			for(let city in cities){
+				if(mousePos.x >= cities[city].position.x - 8 && mousePos.x <= cities[city].position.x + 8 &&
+					mousePos.y >= cities[city].position.y - 8 && mousePos.y <= cities[city].position.y + 8 )
+					{
+						cityName = city
+						
+					}
+					}
+					console.log(cityName)
+			if (destinationArr.includes(cityName.toString()))	{
+				console.log('moving player')
+				// console.log(currentPlayer.position.position)
+				currentPlayer.position.position = cities[cityName].position
+				drawPlayer(currentPlayer)
+				// console.log(currentPlayer.position.position)
+				
+
+			}	
+			}, false);
+	}
 
 

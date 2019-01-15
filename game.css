@@ -99,11 +99,13 @@
 
 #turnStatus {
     /* position: relative; */
-    background-color: brown;
-    float:right
-}
-body{
-    /* display: flex; */
-    position: relative;
+    flex: 1;
     /* background-color: brown; */
+    align-items: flex-start;
+    /* float:right */
+}
+.toprow{
+    display: flex;
+    align-items: flex-start;
+    position: relative;
 }

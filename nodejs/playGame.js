@@ -64,3 +64,26 @@ function isOutbreak(cityName){
 function countINF(){
 	console.log(Object.values(state))
 }
+
+//pressing 1 will displayes which cities player can drive/Ferry to
+
+const node = document.getElementsByClassName("toprow")[0];
+// console.log(node)
+node.addEventListener("keydown", function(event) {
+    if (event.key === "1") {
+		event.preventDefault();
+		let destination = "<br> You can Drive/Ferry to " + checkDriveTo()
+		showTurnSatus(destination)
+		console.log(destination)
+		
+        // Do more work
+	}
+	
+});
+
+function checkDriveTo(){
+	let currentPlayer = checkTurn()
+	let cityPlayerIsIn = currentPlayer.position.connections
+	relocatePlayer(cityPlayerIsIn, currentPlayer)
+	return cityPlayerIsIn
+}

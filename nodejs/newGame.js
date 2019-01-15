@@ -28,8 +28,8 @@ function newGame(){
 		state.players[i] = new Player(roles[rolesArr.shift()], i)
 		
 		// console.log(state.players)
-		let pawn = state.players[i].role
-		drawPlayer(pawn.image, state.players[i])
+		// let pawn = state.players[i].role
+		drawPlayer(state.players[i])
 		// console.log('hi')
 	}
 	// rolePawn = players.player1.role

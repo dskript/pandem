@@ -141,7 +141,7 @@ class Player {
 	constructor(role, x){
 		this.turnOrder = x
 		this.role = role
-		this.position = cities.atlanta.position
+		this.position = cities.atlanta
 		// this.state: 'out of turn',
 		// this.actionCount = 4,
 		this.hand = []	
