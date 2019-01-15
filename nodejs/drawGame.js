@@ -188,7 +188,11 @@ function showTurnSatus(destination){
 	// console.log(x)
 	let player = checkTurn()
 
-	let text = player.role.name + "<br> # of Actions: " + state.actions + destination
+	let text = player.role.name + "<br> # of Actions: " + state.actions 
+	if( destination !== undefined){
+		text = text + destination
+	}
+	
 	x.innerHTML = text
 }
 
@@ -229,8 +233,11 @@ function showHandButton() {
 			y: evt.clientY - rect.top
 		};
 		}
+
+
+		//relocates player pawn to another city if passed destination Array matches the click of the user
 	function relocatePlayer(destinationArr, currentPlayer){
-		console.log(destinationArr)
+		// console.log(destinationArr)
 		canvas.addEventListener('mousedown', function(evt) {
 			var mousePos = getMousePos(canvas, evt);
 			let cityName = ""
@@ -239,10 +246,8 @@ function showHandButton() {
 					mousePos.y >= cities[city].position.y - 8 && mousePos.y <= cities[city].position.y + 8 )
 					{
 						cityName = city
-						
+						}
 					}
-					}
-					console.log(cityName)
 			if (destinationArr.includes(cityName.toString()))	{
 				console.log('moving player')
 				// console.log(currentPlayer.position.position)

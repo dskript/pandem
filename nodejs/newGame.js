@@ -69,7 +69,7 @@ function newGame(){
 	//resets state turn to 1 **changes this once population defiens who goes first   <<< ------------------------------------
 	state.turn = 1
 	//displayer role based on turn order and number of remaining actions 
-		showTurnSatus(state.turn)	
+		showTurnSatus()	
 	//infect cities: 3 cards - 3 INF per city, 3 cards - 2 INF per city, 3 cards - 1 INF per city
 		infectOnStart(3,2)
 		infectOnStart(3,1)
