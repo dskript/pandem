@@ -13,6 +13,8 @@ let usedPlayDeck = []
 	
 //Start new game, shuffles everything in the game
 function newGame(){
+
+
 	setUpPlayersDifficulty()
 	shuffle(infectionDeck)
 	rolesArr = Object.keys(roles)
@@ -20,7 +22,7 @@ function newGame(){
 	shuffle(playDeck)
 
 	//draw research station in Atlanta
-	drawResearchStation('atlanta')
+	drawResearchStation(state.researchSt[0])
 
 	//creates new players, assigns role and set temporary turn order
 	for (let i = 1; i <= state.totalPlayers; i++){

@@ -1,3 +1,21 @@
+//creates 5card depth to INF & PLAY decks
+function cardDeck(id, className, elementName, num){
+	for(var i=0; i < 5; i++){
+		var newDiv = document.createElement('div');
+		newDiv.id = id;
+		newDiv.className = className;
+		// newDiv.style = `order: ${(i)}; z-index: ${-(i+10)};`
+		newDiv.style = `top:${(i)}%; left:${(i+num)}%; z-index: ${-(i+10)};`
+
+		var element = document.getElementsByClassName(elementName)
+		element[0].appendChild(newDiv);
+		}
+	let x = document.getElementsByTagName("div")	
+}
+//draws two decks 
+cardDeck('inf','deck', 'INFdeck', 1)
+cardDeck('pl','deck', 'PLAYdeck', 1)
+
 
 //loads canvas and sets its width/height to css style + 2d space
 let canvas = document.getElementById('canvas')
@@ -14,41 +32,24 @@ let ctx = canvas.getContext('2d')
 function drawMap(ctx, image){
     // If the image is not ready, wait and try again in 
     // approx 50 milliseconds
-    if (!image.complete){
+    if (!imageMap.complete){
       setTimeout(function(){
-        drawMap(ctx, image);
+        drawMap(ctx, imageMap);
       }, 50);
       return;
     }
-	ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+	ctx.drawImage(imageMap, 0, 0, canvas.width, canvas.height);
 	//put city and connecting lines on the map after map image is louaded
 	drawConnection()
 	drawCity()
-	cardDeck('inf','deck', 'INFdeck', 1)
-	cardDeck('pl','deck', 'PLAYdeck', 1)
+
 }
 
     // Create a new image object
-    var image = new Image();
+    var imageMap = new Image();
     // Set the image source and start loading
-    image.src = './Planet_Earth_D_crop.png';
-    drawMap(ctx, image);
-
-
-//creates 5card depth to INF & PLAY decks
-function cardDeck(id, className, elementName, num){
-	for(var i=0; i < 5; i++){
-		var newDiv = document.createElement('div');
-		newDiv.id = id;
-		newDiv.className = className;
-		// newDiv.style = `order: ${(i)}; z-index: ${-(i+10)};`
-		newDiv.style = `top:${(i)}%; left:${(i+num)}%; z-index: ${-(i+10)};`
-
-		var element = document.getElementsByClassName(elementName)
-		element[0].appendChild(newDiv);
-		}
-	let x = document.getElementsByTagName("div")	
-}
+    imageMap.src = './Planet_Earth_D_crop.png';
+    drawMap(ctx, imageMap);
 
 
 
@@ -92,6 +93,7 @@ function drawPlayer(player){
 	let x = player.position.position.x - 10 + drawPlayerInSameCity(player)
 	let y = player.position.position.y - 35
 	image.src = player.role.image
+	ctx.save();
 
 	if (!image.complete){
 		setTimeout(function(){
@@ -100,23 +102,6 @@ function drawPlayer(player){
 		return;
 	  }
 ctx.drawImage(image, x, y, 20, 30);
-
-
-
-
-
-// var newDiv = document.createElement('div');
-// 		newDiv.id = id;
-// 		newDiv.className = className;
-
-// 		newDiv.style = `top:${(i)}%; left:${(i+num)}%; z-index: ${-(i+10)};`
-
-// 		var element = document.getElementsByClassName(elementName)
-// 		element[0].appendChild(newDiv);
-// 		}
-// 	let x = document.getElementsByTagName("div")	
-
-
 
 }
 
@@ -152,18 +137,22 @@ function infect(INFcity){
 	}	
 
 
+
 function drawResearchStation(cityName){
-	var image = new Image();
-	let x = cities[cityName].position.x - 15
-	let y = cities[cityName].position.y - 35
-	image.src = './research_station.png'
+		// console.log
+		var image = new Image();
+		let x = cities[cityName].position.x - 15
+		let y = cities[cityName].position.y - 35
+		image.src = './research_station.png'
+		
+		if (!image.complete){
+			setTimeout(function(){
+				drawResearchStation(cityName);
+			}, 50);
+			return;
+		}	
+
 	
-	if (!image.complete){
-		setTimeout(function(){
-			drawResearchStation(cityName);
-		}, 50);
-		return;
-	  }
 ctx.drawImage(image, x, y, 30, 24);
 }	
 
@@ -235,9 +224,7 @@ function showHandButton() {
 		}
 
 
-		//relocates player pawn to another city if passed destination Array matches the click of the user
-	function relocatePlayer(destinationArr, currentPlayer){
-		// console.log(destinationArr)
+	//"drives" player pawn to adjecent city if destination Array matches the click of the user
 		canvas.addEventListener('mousedown', function(evt) {
 			var mousePos = getMousePos(canvas, evt);
 			let cityName = ""
@@ -248,16 +235,30 @@ function showHandButton() {
 						cityName = city
 						}
 					}
+		let currentPlayer = checkTurn()
+		let destinationArr = currentPlayer.position.connections
 			if (destinationArr.includes(cityName.toString()))	{
 				console.log('moving player')
-				// console.log(currentPlayer.position.position)
-				currentPlayer.position.position = cities[cityName].position
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+				currentPlayer.position = cities[cityName]
+				state.actions --
 				drawPlayer(currentPlayer)
-				// console.log(currentPlayer.position.position)
-				
-
-			}	
+				redrawCanvas()
+				}	
 			}, false);
-	}
 
+
+	function redrawCanvas(){
+		// debugger
+		//map, cities & connection
+		drawMap(ctx, imageMap)
+		//player pawn
+		for (let i = 1; i <= state.totalPlayers; i++){
+			drawPlayer(state.players[i])
+		}
+
+
+		state.researchSt.forEach(drawResearchStation(element))
+		
+	}
 

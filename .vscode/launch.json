@@ -3,13 +3,13 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-        
-    
+    "configurations": [
         {
-            "type": "node",
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/nodejs/newGame.js"
+            "name": "Debug in Chrome",
+            "url": "file:///Users/dska/STUDY/pandem/index.html",
+            "webRoot": "${workspaceFolder}/pandem"
         }
     ]
 }

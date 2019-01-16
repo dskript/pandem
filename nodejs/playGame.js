@@ -54,27 +54,27 @@ function dealPLAYcard(activePlayer){
 //returns city disease count from Game state
 function isOutbreak(cityName){
 	let diseaseCount = state.city[cityName].length
-	let colorCount = Object.values(state.city).flat()
+	// let colorCount = Object.values(state.city).flat()
 
 	console.log(state.red)
 	// console.log(state.city[cityName])
 	return diseaseCount
 }
 
-function countINF(){
-	console.log(Object.values(state))
-}
+// function countINF(){
+// 	console.log(Object.values(state))
+// }
 
-//pressing 1 will displayes which cities player can drive/Ferry to
+//pressing 1 displayes which cities player can drive/Ferry to
 
 const node = document.getElementsByClassName("toprow")[0];
 // console.log(node)
 node.addEventListener("keydown", function(event) {
     if (event.key === "1") {
 		event.preventDefault();
-		let destination = "<br> You can Drive/Ferry to " + checkDriveTo()
-		showTurnSatus(destination)
-		console.log(destination)
+		let text = "<br> You can Drive/Ferry to " + checkDriveTo()
+		showTurnSatus(text)
+
 		
         // Do more work
 	}
@@ -82,8 +82,10 @@ node.addEventListener("keydown", function(event) {
 });
 
 function checkDriveTo(){
-	let currentPlayer = checkTurn()
-	let cityPlayerIsIn = currentPlayer.position.connections
-	relocatePlayer(cityPlayerIsIn, currentPlayer)
-	return cityPlayerIsIn
+	// debugger
+
+	let destinations = currentPlayer.position.connections
+	//acivates relocatePlayer function with current player and array of cities where player can drive/ferry 
+	// relocatePlayer(currentPlayer)
+	return destinations
 }

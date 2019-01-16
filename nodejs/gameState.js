@@ -56,7 +56,7 @@ let cities = {
 		INFstate: { red: 0, cyan: 0, black: 0, yellow: 0},
 		connections: ['lima','bogota','miami','chicago','la']
 		},
-		miami: {
+	miami: {
 		name: 'Miami',
 		position: new position(252,371),
 		color: 'yellow',
@@ -65,12 +65,12 @@ let cities = {
 		},
 		la: {
 		name: 'Los Angeles',
-		position: new position(90,332),
+	position: new position(90,332),
 		color: 'yellow',
 		INFstate: { red: 0, cyan: 0, black: 0, yellow: 0},
 		connections: ['chicago','mexicocity','sf']
 		},
-		atlanta: {
+	atlanta: {
 		name: 'Atlanta',
 		position: new position(233,331),
 		color: 'cyan',
@@ -84,14 +84,14 @@ let cities = {
 		INFstate: { red: 0, cyan: 0, black: 0, yellow: 0},
 		connections: ['atlanta','montreal','sf','la','mexicocity']
 		},  
-		wdc: {
+	wdc: {
 		name: 'Washington',
 		position: new position(294,331),
 		color: 'cyan',
 		INFstate: { red: 0, cyan: 0, black: 0, yellow: 0},
 		connections: ['miami','atlanta','ny']
 		},
-		montreal: {
+	montreal: {
 		name: 'Montreal',
 		position: new position(251,276),
 		color: 'cyan',
@@ -331,6 +331,7 @@ let state = {
 	players:{},
 	turn: 1,
 	actions: 4,
+	researchSt:['atlanta'],
 	// activePlayer: players.player1,
 	difficulty: 'none',
 }
